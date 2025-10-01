@@ -3,480 +3,494 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VoltStudios Terms of Service</title>
+    <title>VoltStudios | Custom Minecraft & Discord Development</title>
+    <!-- Favicon (ICO Logo) - Placeholder link pointing to the desired assets folder location -->
+    <link rel="icon" href="assets/img/Icon.png" type="image/png">
+    
+    <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Lucide Icons for modern, sharp vector icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        .article-heading-container {
-            scroll-margin-top: 5rem;
+        /* Configure Tailwind to use the Inter font and a modern color palette */
+        :root {
+            --primary-orange: 245 158 11; /* amber-500 */
         }
-        #toc a {
-            transition: all 0.15s ease-in-out;
-            padding: 0.35rem 0.65rem;
-            display: flex;
-            align-items: center;
-            border-radius: 0.5rem;
-        }
-        #toc a:hover {
-            background-color: #fcd34d;
-            color: #1c1917;
-        }
-        .main-card {
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+        
+        /* Pulse effect for CTA button */
+        @keyframes pulse-ring {
+            0% { transform: scale(0.3); opacity: 0.8; }
+            100% { transform: scale(1.5); opacity: 0; }
         }
 
-        /* --- Numbered List Styling --- */
-        .article-content ol {
-            /* Use standard numbering */
-            list-style-type: decimal;
-            /* Indent the text and numbers from the left edge */
-            padding-left: 1.75rem;
-            margin-left: 0.5rem;
+        .pulse-effect::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            background: rgba(var(--primary-orange), 0.5);
+            border-radius: 9999px;
+            animation: pulse-ring 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+            z-index: 0;
         }
 
-        .article-content ol > li {
-            margin-bottom: 0.75rem;
-            line-height: 1.7;
+        /* --- MODERN ANIMATION KEYFRAMES --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .article-content ol {
-            list-style-position: outside;
+        .animate-fadeIn {
+            animation: fadeIn 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .article-content ol > li::marker {
-            font-weight: 700;
-            color: #f59e0b;
+        .animate-slideUp {
+            animation: slideUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+        
+        /* Hero Glow Animation for subtle background movement */
+        @keyframes subtle-glow-move {
+            0% { transform: translate(0, 0) scale(1.0); }
+            50% { transform: translate(10px, -10px) scale(1.02); }
+            100% { transform: translate(0, 0) scale(1.0); }
         }
 
-        /* Nested list (a, b, c...) */
-        .article-content ol > li > ol {
-            list-style-type: lower-alpha;
-            padding-left: 1.5rem;
-            margin-top: 0.5rem;
-        }
-        .article-content ol > li > ol > li::marker {
-            color: #d8b4fe;
-        }
-
-        /* Nested UNORDERED list */
-        .article-content ul {
-            list-style-type: disc;
-            padding-left: 1.5rem;
-            margin-left: 0.5rem;
-        }
-        .article-content ul > li {
-            margin-bottom: 0.25rem;
-            line-height: 1.5;
-        }
-        .article-content ul > li::marker {
-            color: #f59e0b;
+        .hero-bg-glow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.08; 
+            background: radial-gradient(circle at 70% 30%, rgba(245, 158, 11, 0.1) 0%, transparent 60%);
+            animation: subtle-glow-move 15s ease-in-out infinite alternate;
         }
 
-        /* URL colors */
-        .article-content a {
-            color: #fcd34d;
+        /* Service Section layered background animation */
+        @keyframes background-pan {
+          from { background-position: 0% 50%; }
+          to { background-position: 100% 50%; }
         }
-        .article-content a:hover {
-            color: #d8b4fe;
-            text-decoration: underline;
+        
+        .services-bg {
+            background: linear-gradient(90deg, #18181b, #111827, #18181b); /* Subtle dark gradient transition */
+            background-size: 200% 100%;
+            animation: background-pan 12s linear infinite alternate;
+        }
+        /* ----------------------------------------------- */
+
+        /* Custom scrollbar for aesthetics */
+        body::-webkit-scrollbar {
+            width: 8px;
+        }
+        body::-webkit-scrollbar-track {
+            background: #000;
+        }
+        body::-webkit-scrollbar-thumb {
+            background: rgb(var(--primary-orange));
+            border-radius: 4px;
+        }
+
+        /* Base styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000;
+            color: #e4e4e7; /* zinc-200 */
+        }
+
+        /* Custom button style with smooth transition and glow */
+        .cta-button {
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(var(--primary-orange), 0.5);
+        }
+
+        .cta-button:hover {
+            box-shadow: 0 0 20px rgba(var(--primary-orange), 0.8), 0 0 5px rgba(var(--primary-orange), 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Card hover animation */
+        .service-card {
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border: 1px solid #27272a; /* zinc-800 */
+        }
+
+        .service-card:hover {
+            background-color: #111111; /* Even darker on hover */
+            border-color: rgb(var(--primary-orange));
+            transform: translateY(-8px) scale(1.03); /* More pronounced lift */
+            box-shadow: 0 15px 30px rgba(var(--primary-orange), 0.2);
         }
     </style>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        'vs-accent': '#fcd34d',
-                        'vs-dark-bg': '#0a0a0a',
-                        'vs-card-bg': '#171717',
-                        'vs-text-light': '#e5e7eb',
-                        'vs-text-muted': '#a1a1aa',
-                    }
-                }
-            }
-        }
-    </script>
+    <!-- Load Inter font via Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
 </head>
-<body class="bg-vs-dark-bg font-sans text-vs-text-light antialiased pt-16">
+<body class="bg-zinc-950 min-h-screen">
 
-<header class="fixed top-0 left-0 right-0 bg-vs-card-bg shadow-xl border-b border-gray-800 z-50">
-    <div class="container mx-auto px-6 h-16 flex items-center justify-between">
-        <div class="flex items-center space-x-3">
-            <!-- Logo (Lightning Bolt Icon) -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-vs-accent"><path d="M15 3l-8 11h5l-4 8 8-11h-5l4-8z"/></svg>
-            <span class="text-2xl font-extrabold text-white tracking-tighter">VoltStudios</span>
-        </div>
-        <nav class="hidden md:flex space-x-8">
-            <a href="tos.pdf" class="text-vs-text-muted hover:text-vs-accent transition-colors font-medium flex items-center space-x-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-text"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
-                <span class="text-lg">Document</span>
-            </a>
-            <a href="connect" class="text-vs-text-muted hover:text-vs-accent transition-colors font-medium flex items-center space-x-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle"><path d="M7.9 20A10.1 10.1 0 1 0 4 15.6L2 22Z"/></svg>
-                <span class="text-lg">Connect</span>
-            </a>
-        </nav>
-    </div>
-</header>
-
-<div class="container mx-auto px-6 py-10 md:py-16">
-    <div class="flex flex-col lg:flex-row lg:space-x-12">
-
-        <aside class="lg:w-1/4 mb-10 lg:mb-0 lg:sticky lg:top-24 self-start">
-            <div class="bg-vs-card-bg p-6 rounded-xl shadow-2xl border border-vs-accent/20">
-                <div class="flex items-center space-x-3 mb-4 pb-3 border-b border-gray-800">
-                    <!-- Sidebar Icon -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-vs-accent"><path d="M15 3l-8 11h5l-4 8 8-11h-5l4-8z"/></svg>
-                    <h3 class="text-lg font-bold text-white tracking-wider">GUIDE</h3>
+    <!-- Navigation Bar (Topbar) -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-zinc-950/95 backdrop-blur-md shadow-lg border-b border-zinc-800 transition-shadow duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                
+                <!-- Logo (Image link used here) -->
+                <a href="#" class="flex-shrink-0 flex items-center">
+                    <!-- Placeholder image used here. Replace the src URL with your actual asset link when deploying. -->
+                    <img src="assets/img/Icon.svg" 
+                         alt="VoltStudios Logo" 
+                         class="h-8 w-auto">
+                </a>
+                
+                <!-- Desktop Nav Links -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-zinc-300 hover:text-amber-500 transition duration-150 py-2">Home</a>
+                    <a href="#services" class="text-zinc-300 hover:text-amber-500 transition duration-150 py-2">Services</a>
+                    <a href="#portfolio" class="text-zinc-300 hover:text-amber-500 transition duration-150 py-2">Portfolio</a>
+                    <a href="#contact" class="text-zinc-300 hover:text-amber-500 transition duration-150 py-2">Contact</a>
                 </div>
-                <nav id="toc" class="space-y-1 text-base text-vs-text-muted"></nav>
+
+                <!-- CTA Button -->
+                <a href="#contact" class="hidden md:block bg-amber-500 text-zinc-900 font-semibold py-2 px-4 rounded-lg hover:bg-amber-400 transition duration-300 shadow-xl shadow-amber-500/30">
+                    Start Your Project
+                </a>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="md:hidden text-zinc-300 hover:text-amber-500 focus:outline-none">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
             </div>
-        </aside>
+        </div>
 
-        <main class="lg:w-3/4">
-            <div class="bg-vs-card-bg p-8 md:p-14 rounded-3xl main-card border border-gray-800">
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-zinc-800">
+                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-zinc-800 hover:text-amber-500">Home</a>
+                <a href="#services" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-zinc-800 hover:text-amber-500">Services</a>
+                <a href="#portfolio" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-zinc-800 hover:text-amber-500">Portfolio</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-zinc-800 hover:text-amber-500">Contact</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-zinc-900 bg-amber-500 text-center hover:bg-amber-400">Start Your Project</a>
+            </div>
+        </div>
+    </nav>
 
-                <header class="mb-12 border-b border-vs-accent pb-8">
-                    <div class="flex items-center space-x-5 mb-4">
-                        <!-- Header Icon -->
-                        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-vs-accent"><path d="M15 3l-8 11h5l-4 8 8-11h-5l4-8z"/></svg>
-                        <h1 class="text-5xl md:text-7xl font-extrabold text-white tracking-tight leading-none">
-                            Terms of Service
-                        </h1>
+    <!-- Main Content Sections -->
+    <main>
+        <!-- 1. Hero Section -->
+        <section id="home" class="relative pt-32 pb-24 lg:pt-48 lg:pb-36 overflow-hidden bg-zinc-950">
+            <!-- Dynamic background glow -->
+            <div class="hero-bg-glow"></div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+                
+                <!-- Subtle Electric Effect -->
+                <div class="absolute inset-0 flex items-center justify-center opacity-5">
+                    <div class="w-96 h-96 bg-amber-500 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse animation-delay-500"></div>
+                    <div class="w-80 h-80 bg-yellow-400 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse animation-delay-1000"></div>
+                </div>
+
+                <p class="text-sm font-semibold uppercase tracking-widest text-amber-500 mb-4 transition duration-500 opacity-0 transform translate-y-4" data-animate="fade-in">
+                    Powering the Future of Gaming Communities
+                </p>
+                <h1 class="text-5xl sm:text-6xl lg:text-8xl font-extrabold text-white leading-tight mb-6 transition duration-700 opacity-0 transform translate-y-4" data-animate="slide-up">
+                    The Spark for <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-yellow-300">Your Vision</span>
+                </h1>
+                <p class="mt-4 text-xl sm:text-2xl text-zinc-400 max-w-3xl mx-auto mb-10 transition duration-700 delay-100 opacity-0 transform translate-y-4" data-animate="slide-up">
+                    VoltStudios delivers high-performance, tailor-made Minecraft and Discord solutions—from custom plugins to full server infrastructure setup.
+                </p>
+                <a href="#services" class="inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-medium rounded-xl text-zinc-900 bg-amber-500 hover:bg-amber-400 cta-button relative transition duration-300 shadow-2xl shadow-amber-500/40 opacity-0" data-animate="fade-in">
+                    <span class="pulse-effect absolute"></span>
+                    <span class="relative z-10">See Our Services</span>
+                    <i data-lucide="arrow-right" class="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- 2. Services Section -->
+        <section id="services" class="relative py-24 services-bg border-t border-zinc-800 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="text-center mb-16 opacity-0" data-animate="slide-up">
+                    <h2 class="text-4xl font-bold text-white mb-4">What We <span class="text-amber-500">Build</span></h2>
+                    <p class="text-lg text-zinc-400 max-w-3xl mx-auto">
+                        Specialized development focusing on community platforms and the gaming world.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Service Card 1: Custom Minecraft Plugins -->
+                    <div class="service-card p-6 rounded-xl bg-zinc-950 shadow-xl opacity-0 transform translate-y-8" data-animate="card-up" data-delay="0">
+                        <i data-lucide="bolt" class="w-10 h-10 text-amber-500 mb-4"></i>
+                        <h3 class="text-2xl font-semibold text-white mb-3">Custom Minecraft Plugins</h3>
+                        <p class="text-zinc-400">
+                            Bespoke Spigot/Paper/Velocity plugins engineered precisely to your server's specifications, enhancing gameplay and optimizing performance.
+                        </p>
                     </div>
-                    <p class="text-xl text-vs-text-muted font-medium ml-20 mt-2">VoltStudios Agreement | Effective Date: <span class="text-vs-accent font-bold">29 September 2025</span></p>
-                </header>
 
-                <section id="terms-content" class="space-y-12 text-lg leading-relaxed text-vs-text-light">
+                    <!-- Service Card 2: Minecraft Server Setups -->
+                    <div class="service-card p-6 rounded-xl bg-zinc-950 shadow-xl opacity-0 transform translate-y-8" data-animate="card-up" data-delay="100">
+                        <i data-lucide="server" class="w-10 h-10 text-yellow-500 mb-4"></i>
+                        <h3 class="text-2xl font-semibold text-white mb-3">Minecraft Server Setups</h3>
+                        <p class="text-zinc-400">
+                            Full-service, optimized server deployment from the ground up, ensuring stability, security, and scalability for any player count.
+                        </p>
+                    </div>
 
-                    <main class="article-content">
-                        <!-- Article 1: Introduction -->
-                        <div id="article-1" class="article-heading-container">
-                            <h2 class="text-3xl font-extrabold text-white mb-6 pl-8 border-l-4 border-vs-accent flex items-center space-x-4">
-                                <span class="text-vs-accent font-mono">01.</span>
-                                <!-- Icon: Scroll/Document -->
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-vs-accent"><path d="M8 2h8a2 2 0 0 1 2 2v18l-6-3-6 3V4a2 2 0 0 1 2-2z"/></svg>
-                                <span>Introduction</span>
-                            </h2>
-                            <ol class="text-gray-300">
-                                <li>This Terms of Service document (the <strong>"Agreement"</strong>) sets forth the terms and conditions of your use of and engagement with the services (<strong>"Services"</strong>) offered to you by VoltStudios. The terms “we” and “our” may be used in this Agreement hereafter to reference VoltStudios.</li>
-                                <li>We strongly recommend you read through this Agreement to enable you to understand the capacity to which we provide our Services.</li>
-                                <li>By using our Services, it is assumed you have read and have the capacity to understand this Agreement. If you do not agree to this Terms of Service document and all the terms contained herein, <strong>you must not use our Services</strong>.</li>
-                                <li>For ease of reference, navigation and readability, this Agreement is organised into articles and paragraphs. For example, this is Article 1(4).</li>
-                            </ol>
-                            </div>
+                    <!-- Service Card 3: Minecraft Server Configurations -->
+                    <div class="service-card p-6 rounded-xl bg-zinc-950 shadow-xl opacity-0 transform translate-y-8" data-animate="card-up" data-delay="200">
+                        <i data-lucide="settings" class="w-10 h-10 text-amber-500 mb-4"></i>
+                        <h3 class="text-2xl font-semibold text-white mb-3">Server Configurations</h3>
+                        <p class="text-zinc-400">
+                            Expert tuning of existing configurations, permission systems (LuckPerms), anti-cheat, and resource management for peak efficiency.
+                        </p>
+                    </div>
 
-                        <hr class="border-gray-800/50 my-8">
+                    <!-- Service Card 4: Discord Bot Applications -->
+                    <div class="service-card p-6 rounded-xl bg-zinc-950 shadow-xl opacity-0 transform translate-y-8" data-animate="card-up" data-delay="300">
+                        <i data-lucide="messages-square" class="w-10 h-10 text-yellow-500 mb-4"></i>
+                        <h3 class="text-2xl font-semibold text-white mb-3">Discord Bot Applications</h3>
+                        <p class="text-zinc-400">
+                            Develop robust, scalable Discord bots with slash commands, full database integration, and custom API connections for your community.
+                        </p>
+                    </div>
 
-                        <!-- Article 2: Jurisdiction -->
-                        <div id="article-2" class="article-heading-container">
-                            <h2 class="text-3xl font-extrabold text-white mb-6 pl-8 border-l-4 border-vs-accent flex items-center space-x-4">
-                                <span class="text-vs-accent font-mono">02.</span>
-                                <!-- Icon: Globe -->
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-vs-accent"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20a14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
-                                <span>Jurisdiction</span>
-                            </h2>
-                            <ol class="text-gray-300">
-                                <li>These Terms of Service should be construed in accordance with the laws of the <strong>Kingdom of Belgium</strong>.</li>
-                                <li>Accordingly, it is directed that any and all legal proceedings will take place in accordance with the laws of the Kingdom of Belgium.</li>
-                            </ol>
-                        </div>
-
-                        <hr class="border-gray-800/50 my-8">
-
-                        <!-- Article 3: Description of Services and Scope -->
-                        <div id="article-3" class="article-heading-container">
-                            <h2 class="text-3xl font-extrabold text-white mb-6 pl-8 border-l-4 border-vs-accent flex items-center space-x-4">
-                                <span class="text-vs-accent font-mono">03.</span>
-                                <!-- Icon: Zap/Services -->
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-vs-accent"><path d="M12 2L19 9 19 21 5 21 5 9 12 2z"/></svg>
-                                <span>Description of Services and Scope</span>
-                            </h2>
-                            <ol class="text-gray-300">
-                                <li>VoltStudios constitutes a group of freelancers that provide services, including, but not necessarily limited to, the following:
-                                    <ul class="mt-2 ml-4 text-gray-400">
-                                        <li>Custom Minecraft plugins (i.e., made to the specifications of the client);</li>
-                                        <li>Minecraft server setups;</li>
-                                        <li>Minecraft server configurations;</li>
-                                        <li>Bot applications for the Discord (<a href="https://discord.com" target="_blank" class="text-vs-accent hover:underline">https://discord.com</a>) platform; and</li>
-                                        <li>Discord server setups.</li>
-                                    </ul>
-                                </li>
-                                <li>You accept that VoltStudios may, at any time, increase or decrease its scope of services for any reason as the business continues to develop.</li>
-                                <li>Via VoltStudios, clients can request commissions to be completed to their specifications and the work will be fulfilled by one of our freelancers.</li>
-                                <li><strong>Pricing</strong> is entirely dependent on any individual freelancer and VoltStudios does not enforce any regulations that control how much or how little freelancers can charge.</li>
-                                <li>In practice, pricing is likely to depend on the complexity and scope of the commission in question, as well as how soon the work needs to be completed by.</li>
-                                <li>Freelancers are at will to accept or deny any request, for any, or no reason. It is likely, though, that a reason will be provided at the discretion of the freelancer if work cannot be fulfilled in accordance with the client’s instructions.</li>
-                            </ol>
-                            </div>
-
-                        <hr class="border-gray-800/50 my-8">
-
-                        <!-- Article 4: Assurance of Standards and Professional Diligence -->
-                        <div id="article-4" class="article-heading-container">
-                            <h2 class="text-3xl font-extrabold text-white mb-6 pl-8 border-l-4 border-vs-accent flex items-center space-x-4">
-                                <span class="text-vs-accent font-mono">04.</span>
-                                <!-- Icon: Shield Check/Diligence -->
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-vs-accent"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
-                                <span>Assurance of Standards and Professional Diligence</span>
-                            </h2>
-                            <ol class="text-gray-300">
-                                <li>VoltStudios hereby asserts it will act with professional diligence and will aim to resolve any disputes with you amicably.</li>
-                                <li>We agree to be held to the standard that our representatives will respond to queries with their best knowledge and will approach senior representatives if any clarity is required.</li>
-                                <li>We expect that you will be <strong>respectful towards our representatives at all times</strong>.</li>
-                                <li>You agree that hostility or verbal aggression to our freelancers or management team will not be tolerated and we may refuse service if this is experienced.</li>
-                            </ol>
-                            </div>
-
-                        <hr class="border-gray-800/50 my-8">
-
-                        <!-- Article 5: Payment Methods and Processing -->
-                        <div id="article-5" class="article-heading-container">
-                            <h2 class="text-3xl font-extrabold text-white mb-6 pl-8 border-l-4 border-vs-accent flex items-center space-x-4">
-                                <span class="text-vs-accent font-mono">05.</span>
-                                <!-- Icon: Credit Card/Payment -->
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-vs-accent"><rect width="20" height="14" x="2" y="5" rx="2"/><path d="M2 10h20"/><path d="M12 15h4"/></svg>
-                                <span>Payment Methods and Processing</span>
-                            </h2>
-                        </div>
-                        <ol class="text-gray-300">
-                            <li>Payments for commissions are handled by <strong>Stripe</strong>. Accordingly, you are automatically bound by their Terms of Service and Privacy Policy, accessible via their website at <a href="https://stripe.com" target="_blank" class="text-vs-accent hover:underline">https://stripe.com</a>.</li>
-                            <li>Payment information is securely managed by Stripe and none of this information is made accessible to VoltStudios.</li>
-                        </ol>
-                        <hr class="border-gray-800/50 my-8">
-
-                        <!-- Article 6: Copyright Provisions -->
-                        <div id="article-6" class="article-heading-container">
-                            <h2 class="text-3xl font-extrabold text-white mb-6 pl-8 border-l-4 border-vs-accent flex items-center space-x-4">
-                                <span class="text-vs-accent font-mono">06.</span>
-                                <!-- Icon: Copyright -->
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-vs-accent"><circle cx="12" cy="12" r="10"/><path d="M14.5 12a2.5 2.5 0 0 0 0-5H11v10h3.5a2.5 2.5 0 0 0 0-5z"/></svg>
-                                <span>Copyright Provisions</span>
-                            </h2>
-                            <ol class="text-gray-300">
-                                <li>Work that is commissioned by a client remains the property of VoltStudios while production is ongoing.</li>
-                                <li>After payment in full has been received and confirmed and the work has been marked as complete, the client will be able to use the work in terms that will have been agreed on a commission-by-commission basis.</li>
-                                <li>Unless it has been explicitly agreed otherwise between the freelancer and client, VoltStudios reserves the right to reproduce the work in order to expand our portfolio and for other promotional or marketing purposes as we determine to be appropriate.</li>
-                            </ol>
-                            </div>
-
-                        <hr class="border-gray-800/50 my-8">
-
-                        <!-- Article 7: Refund Policy -->
-                        <div id="article-7" class="article-heading-container">
-                            <h2 class="text-3xl font-extrabold text-white mb-6 pl-8 border-l-4 border-vs-accent flex items-center space-x-4">
-                                <span class="text-vs-accent font-mono">07.</span>
-                                <!-- Icon: Wallet/Refund -->
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-vs-accent"><path d="M21 12V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h13"/><path d="M16 7v5"/><path d="M12 17h8"/><circle cx="17" cy="17" r="3"/></svg>
-                                <span>Refund Policy</span>
-                            </h2>
-                            <ol class="text-gray-300">
-                                <li>The default presumption should be that <strong>payments are final and refunds will not be issued ordinarily</strong></li>
-                                <li>In exceptional circumstances, a refund may be issued at the <strong>discretion of VoltStudios</strong>, for example where no work has been provided or the work has been produced at an unacceptable quality.</li>
-                                <li>Where VoltStudios decides the issuance of a refund is fair, appropriate and proportionate, we will then determine which type of refund to issue:
-                                    <ol class="mt-2 ml-4 text-gray-400" type="a">
-                                        <li>Full refund (100% of the commission value); or</li>
-                                        <li>Partial refund (1-99% of the commission value).</li>
-                                    </ol>
-                                </li>
-                                <li>Once a decision has been made as to whether a refund will be issued and at what percentage of the original commission value, such a decision is final and cannot be appealed by any means.</li>
-                            </ol>
-                        </div>
-
-                        <hr class="border-gray-800/50 my-8">
-
-                        <!-- Article 8: Declaration of Supreme Authority and Completeness -->
-                        <div id="article-8" class="article-heading-container">
-                            <h2 class="text-3xl font-extrabold text-white mb-6 pl-8 border-l-4 border-vs-accent flex items-center space-x-4">
-                                <span class="text-vs-accent font-mono">08.</span>
-                                <!-- Icon: Crown/Authority -->
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-vs-accent"><path d="m2 4 3 12h14l3-12-6 7-4-7-4 7-6-7z"/><path d="M12 15L12 17"/><path d="M12 18L12 20"/></svg>
-                                <span>Declaration of Supreme Authority and Completeness</span>
-                            </h2>
-                            <ol class="text-gray-300">
-                                <li>These Terms of Service shall constitute the whole and entire terms and conditions that govern your use of and engagement with VoltStudios’ products and Services (the <strong>“Supreme Authority”</strong>).</li>
-                                <li>The Supreme Authority cannot be undermined by any other contract or agreement and the Supreme Authority automatically supersedes any other such agreement that is considered to have been effective prior to the effective date of this Agreement.</li>
-                            </ol>
-                        </div>
-
-                        <hr class="border-gray-800/50 my-8">
-
-                        <!-- Article 9: Severability -->
-                        <div id="article-9" class="article-heading-container">
-                            <h2 class="text-3xl font-extrabold text-white mb-6 pl-8 border-l-4 border-vs-accent flex items-center space-x-4">
-                                <span class="text-vs-accent font-mono">09.</span>
-                                <!-- Icon: Scissors/Severability -->
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-vs-accent"><circle cx="6" cy="6" r="3"/><path d="M8.12 8.12l4.67 4.67"/><path d="M16 6 8 14"/><circle cx="6" cy="18" r="3"/><path d="M14 10l-2.88 2.88"/></svg>
-                                <span>Severability</span>
-                            </h2>
-                            <ol class="text-gray-300">
-                                <li>If any part of this Agreement is found to be invalid, illegal, or unenforceable by a court of law, <strong>the rest of the Agreement will remain valid, legal and enforceable</strong>.</li>
-                                <li>If it is the case that any invalid, illegal or unenforceable part can be modified or deleted to make it valid, legal and enforceable, VoltStudios, as represented by our legal team, will do so in a way that preserves the original intentions as much as possible.</li>
-                            </ol>
-                        </div>
-
-                        <hr class="border-gray-800/50 my-8">
-
-                        <!-- Article 10: Right to Disambiguation and Accessibility -->
-                        <div id="article-10" class="article-heading-container">
-                            <h2 class="text-3xl font-extrabold text-white mb-6 pl-8 border-l-4 border-vs-accent flex items-center space-x-4">
-                                <span class="text-vs-accent font-mono">10.</span>
-                                <!-- Icon: Headphones/Support -->
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-vs-accent"><path d="M3 17V7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M8 12h8"/><path d="M8 8v8"/><path d="M16 8v8"/></svg>
-                                <span>Right to Disambiguation and Accessibility</span>
-                            </h2>
-                            <ol class="text-gray-300">
-                                <li>We are committed to ensuring our policies and procedures, including this Agreement, are accessible to all and easy to understand.</li>
-                                <li>Accordingly, you have the right to <strong>disambiguation</strong>, meaning you can ask us for clarification about anything mentioned in this document and we can explain to you what it means in simple English.</li>
-                                <li>Additionally, if you would like this Agreement to be made available in a different format such as in large print or in a specific font, please let us know and we will be able to accommodate your request.</li>
-                                <li>You can email us at <a href="mailto:contact@voltstudios.net" class="text-vs-accent hover:underline font-medium">contact@voltstudios.net</a>.</li>
-                            </ol>
-                        </div>
-
-                        <hr class="border-gray-800/50 my-8">
-
-                        <!-- Article 11: Termination -->
-                        <div id="article-11" class="article-heading-container">
-                            <h2 class="text-3xl font-extrabold text-white mb-6 pl-8 border-l-4 border-vs-accent flex items-center space-x-4">
-                                <span class="text-vs-accent font-mono">11.</span>
-                                <!-- Icon: X-Circle/Termination -->
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-vs-accent"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6"/><path d="M9 9l6 6"/></svg>
-                                <span>Termination</span>
-                            </h2>
-                            <ol class="text-gray-300">
-                                <li>You, as well as VoltStudios, have the perpetual right to <strong>terminate this Agreement at any time, for any, or no, reason, without consequence</strong>.</li>
-                                <li>This does not invalidate any actions that may have been performed prior to the activation of this Termination clause.</li>
-                                <li>Terminating this Agreement also means we reserve the right to stop providing you Services.</li>
-                            </ol>
-                        </div>
-
-                        <hr class="border-gray-800/50 my-8">
-
-                        <!-- Article 12: Changes to This Agreement -->
-                        <div id="article-12" class="article-heading-container">
-                            <h2 class="text-3xl font-extrabold text-white mb-6 pl-8 border-l-4 border-vs-accent flex items-center space-x-4">
-                                <span class="text-vs-accent font-mono">12.</span>
-                                <!-- Icon: Calendar Clock/Changes -->
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-vs-accent"><path d="M21 7.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h7.5"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/><path d="M18 15v6h-6"/><path d="M15 18H18"/></svg>
-                                <span>Changes to This Agreement</span>
-                            </h2>
-                            <ol class="text-gray-300">
-                                <li>This Agreement may be updated by virtue of any of the following at any time, for any, or no, reason by VoltStudios:
-                                    <ul class="mt-2 ml-4 text-gray-400">
-                                        <li>additions;</li>
-                                        <li>amendments; or</li>
-                                        <li>deletions.</li>
-                                    </ul>
-                                </li>
-                                <li>We will endeavour to notify you of strong>significant changes</strong> to this Agreement at least <strong>thirty (30) days</strong> before such changes take effect.</li>
-                                <li>It is unlikely that you will be notified about very minor changes to this Agreement. As a result, it is <strong>strongly advised that you occasionally revisit this Agreement</strong> as to ensure your agreement with it continues to be sustained.</li>
-                            </ol>
-                        </div>
-                    </main>
-
-                </section>
-            </div>
-        </main>
-
-    </div>
-</div>
-
-<footer class="bg-vs-card-bg border-t border-gray-800 mt-20 shadow-inner">
-    <div class="container mx-auto px-6 py-16">
-        <div class="grid grid-cols-2 md:grid-cols-5 gap-10">
-
-            <div class="col-span-2">
-                <div class="flex items-center space-x-2 mb-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-vs-accent"><path d="M15 3l-8 11h5l-4 8 8-11h-5l4-8z"/></svg>
-                    <span class="text-xl font-bold text-white">VoltStudios</span>
-                </div>
-                <p class="text-sm text-vs-text-muted leading-relaxed">Providing high-quality custom development services since 2025.</p>
-                <p class="text-xs text-gray-600 mt-6">&copy; 2025 VoltStudios. All rights reserved.</p>
-            </div>
-
-            <div>
-                <h4 class="text-lg font-semibold text-white mb-5">Policies</h4>
-                <nav class="space-y-3 text-sm text-vs-text-muted">
-                    <a href="#article-1" class="block hover:text-vs-accent transition-colors">Terms of Service</a>
-                    <a href="#article-7" class="block hover:text-vs-accent transition-colors">Refund Policy</a>
-                    <a href="#" class="block hover:text-vs-accent transition-colors">Privacy Policy</a>
-                </nav>
-            </div>
-
-            <div>
-                <h4 class="text-lg font-semibold text-white mb-5">Our Focus</h4>
-                <nav class="space-y-3 text-sm text-vs-text-muted">
-                    <p class="block">Minecraft Plugins</p>
-                    <p class="block">Server Setups</p>
-                    <p class="block">Discord Bots</p>
-                </nav>
-            </div>
-
-            <div id="connect">
-                <h4 class="text-lg font-semibold text-white mb-5">Connect</h4>
-                <div class="space-y-4 text-sm">
-                    <a href="mailto:contact@voltstudios.net" class="flex items-center space-x-3 text-vs-text-muted hover:text-vs-accent transition-colors">
-                        <!-- Mail Icon -->
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                        <span class="font-medium">contact@voltstudios.net</span>
-                    </a>
-                    <a href="https://discord.gg/voltstudios" target="_blank" class="flex items-center space-x-3 text-vs-text-muted hover:text-vs-accent transition-colors">
-                        <!-- Discord Icon -->
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="currentColor" class="lucide lucide-message-circle"><path d="M13.545 2.907a13.2 13.2 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.2 12.2 0 0 0-3.658 0 8 8 0 0 0-.412-.833.05.05 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.04.04 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032q.003.022.021.037a13.3 13.3 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019q.463-.63.818-1.329a.05.05 0 0 0-.01-.059l-.018-.011a9 9 0 0 1-1.248-.595.05.05 0 0 1-.02-.066l.015-.019q.127-.095.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.05.05 0 0 1 .053.007q.121.1.248.195a.05.05 0 0 1-.004.085 8 8 0 0 1-1.249.594.05.05 0 0 0-.03.03.05.05 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.2 13.2 0 0 0 4.001-2.02.05.05 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.03.03 0 0 0-.02-.019m-8.198 7.307c-.789 0-1.438-.724-1.438-1.612s.637-1.613 1.438-1.613c.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612m5.316 0c-.788 0-1.438-.724-1.438-1.612s.637-1.613 1.438-1.613c.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612"/></svg>
-                        <span class="font-medium">Discord: /voltstudios</span>
-                    </a>
+                    <!-- Service Card 5: Discord Server Setups -->
+                    <div class="service-card p-6 rounded-xl bg-zinc-950 shadow-xl opacity-0 transform translate-y-8" data-animate="card-up" data-delay="400">
+                        <i data-lucide="user-cog" class="w-10 h-10 text-amber-500 mb-4"></i>
+                        <h3 class="text-2xl font-semibold text-white mb-3">Discord Server Setups</h3>
+                        <p class="text-zinc-400">
+                            Professional server structuring, channel organization, role management, and security implementation for a thriving Discord ecosystem.
+                        </p>
+                    </div>
+                    
+                    <!-- Placeholder Card 6: Portfolio CTA -->
+                     <div class="service-card p-6 rounded-xl bg-zinc-950 shadow-xl flex flex-col justify-center items-center text-center border-dashed border-zinc-700 opacity-0 transform translate-y-8" data-animate="card-up" data-delay="500">
+                        <i data-lucide="layers" class="w-10 h-10 text-zinc-500 mb-4"></i>
+                        <h3 class="text-2xl font-semibold text-white mb-3">Ready to Start?</h3>
+                        <p class="text-zinc-400 mb-4">
+                            Let's electrify your community project today.
+                        </p>
+                        <a href="#contact" class="text-amber-500 hover:text-amber-400 font-medium flex items-center transition duration-200">
+                            Contact Us Now
+                            <i data-lucide="chevron-right" class="w-5 h-5 ml-1"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
+        </section>
 
+        <!-- 3. Portfolio/Experience (Mock Content) -->
+        <section id="portfolio" class="py-24 bg-zinc-950 border-t border-zinc-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 opacity-0" data-animate="slide-up">
+                    <h2 class="text-4xl font-bold text-white mb-4">Our <span class="text-amber-500">Experience</span></h2>
+                    <p class="text-lg text-zinc-400 max-w-3xl mx-auto">
+                        A glimpse into the scale and complexity of the projects we handle.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                    
+                    <div class="p-6 bg-zinc-900 rounded-xl transition duration-300 hover:bg-zinc-800 border border-zinc-800 hover:border-amber-500/50 opacity-0 transform translate-y-4" data-animate="stat-fade" data-delay="0">
+                        <p class="text-5xl font-extrabold text-amber-500 mb-1">2+</p>
+                        <p class="text-lg text-zinc-400">Custom Plugins Delivered</p>
+                    </div>
+
+                    <div class="p-6 bg-zinc-900 rounded-xl transition duration-300 hover:bg-zinc-800 border border-zinc-800 hover:border-amber-500/50 opacity-0 transform translate-y-4" data-animate="stat-fade" data-delay="100">
+                        <p class="text-5xl font-extrabold text-amber-500 mb-1">0</p>
+                        <p class="text-lg text-zinc-400">Peak Concurrent Players Supported</p>
+                    </div>
+
+                    <div class="p-6 bg-zinc-900 rounded-xl transition duration-300 hover:bg-zinc-800 border border-zinc-800 hover:border-amber-500/50 opacity-0 transform translate-y-4" data-animate="stat-fade" data-delay="200">
+                        <p class="text-5xl font-extrabold text-amber-500 mb-1">0</p>
+                        <p class="text-lg text-zinc-400">Enterprise Discord Bots</p>
+                    </div>
+
+                    <div class="p-6 bg-zinc-900 rounded-xl transition duration-300 hover:bg-zinc-800 border border-zinc-800 hover:border-amber-500/50 opacity-0 transform translate-y-4" data-animate="stat-fade" data-delay="300">
+                        <p class="text-5xl font-extrabold text-amber-500 mb-1">99%</p>
+                        <p class="text-lg text-zinc-400">Client Satisfaction Rate</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Contact CTA Section -->
+        <section id="contact" class="py-20 bg-zinc-900 border-t border-b border-zinc-800">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center opacity-0" data-animate="slide-up">
+                <i data-lucide="zap" class="w-12 h-12 text-amber-500 mx-auto mb-4 animate-bounce"></i>
+                <h2 class="text-4xl font-bold text-white mb-4">Ready to Get Started?</h2>
+                <p class="text-xl text-zinc-400 mb-8">
+                    Stop settling for generic solutions. Contact us to discuss your custom project needs and get a free quote.
+                </p>
+                <!-- This would link to a contact form or their Discord/Email in a real app -->
+                <a href="mailto:contact@voltstudios.net" class="inline-flex items-center justify-center px-10 py-4 border border-transparent text-lg font-medium rounded-xl text-zinc-900 bg-amber-500 hover:bg-amber-400 cta-button relative transition duration-300">
+                    <span class="relative z-10">Request a Consultation</span>
+                    <i data-lucide="mail" class="w-5 h-5 ml-2"></i>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer (Bottom Bar) -->
+    <footer class="bg-zinc-950 py-10 border-t border-zinc-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 border-b border-zinc-800 pb-8 mb-8">
+                
+                <!-- Logo & Tagline -->
+                <div>
+                    <a href="#" class="flex-shrink-0 flex items-center mb-4">
+                        <!-- Placeholder image used here. Replace the src URL with your actual asset link. -->
+                        <img src="assets/img/Icon.svg" 
+                             alt="VoltStudios Logo" 
+                             class="h-8 w-auto">
+                    </a>
+                    <p class="text-zinc-500 text-sm">Custom Development for the Gaming World.</p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#services" class="text-zinc-400 hover:text-amber-500 transition duration-150 text-sm">Our Services</a></li>
+                        <li><a href="#portfolio" class="text-zinc-400 hover:text-amber-500 transition duration-150 text-sm">Portfolio</a></li>
+                        <li><a href="#contact" class="text-zinc-400 hover:text-amber-500 transition duration-150 text-sm">Get a Quote</a></li>
+                        <!-- Terms of Service link kept, pointing to a mock location -->
+                        <li><a href="tos.html" class="text-zinc-400 hover:text-amber-500 transition duration-150 text-sm">Terms of Service</a></li>
+                    </ul>
+                </div>
+
+                <!-- Services Focus -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Our Focus</h4>
+                    <ul class="space-y-2">
+                        <li><span class="text-zinc-400 text-sm">Minecraft Plugin Development</span></li>
+                        <li><span class="text-zinc-400 text-sm">Discord Bot Automation</span></li>
+                        <li><span class="text-zinc-400 text-sm">Server Infrastructure</span></li>
+                    </ul>
+                </div>
+
+                <!-- Connect -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Connect</h4>
+                    <p class="text-zinc-400 text-sm">Email: contact@voltstudios.net</p>
+                    <p class="text-zinc-400 text-sm">Discord: <a href="https://discord.gg/voltstudios" target="_blank" class="hover:text-amber-500">.gg/voltstudios</a></p>
+                    <div class="flex space-x-4 mt-3">
+                        <a href="https://discord.gg/voltstudios" target="_blank" class="text-zinc-400 hover:text-amber-500 transition" aria-label="Discord"><i data-lucide="zap" class="w-5 h-5"></i></a>
+                        <!-- GitHub is the only social link kept -->
+                        <a href="#" class="text-zinc-400 hover:text-amber-500 transition" aria-label="GitHub"><i data-lucide="github" class="w-5 h-5"></i></a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="text-center text-sm text-zinc-600">
+                &copy; <span id="current-year"></span> VoltStudios. All Rights Reserved. | Designed with Power.
+            </div>
         </div>
-    </div>
-</footer>
+    </footer>
 
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const tocNav = document.getElementById('toc');
-        const articles = document.querySelectorAll('.article-heading-container');
+    <!-- JavaScript for Mobile Menu, Smooth Scrolling, Icons, and Animations -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Initialize Lucide Icons
+            lucide.createIcons();
+            
+            // 2. Set current year in footer
+            document.getElementById('current-year').textContent = new Date().getFullYear();
 
-        const icons = {
-            'article-1': `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3"><path d="M8 2h8a2 2 0 0 1 2 2v18l-6-3-6 3V4a2 2 0 0 1 2-2z"/></svg>`,
-            'article-2': `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20a14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>`,
-            'article-3': `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3"><path d="M12 2L19 9 19 21 5 21 5 9 12 2z"/></svg>`,
-            'article-4': `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>`,
-            'article-5': `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3"><rect width="20" height="14" x="2" y="5" rx="2"/><path d="M2 10h20"/><path d="M12 15h4"/></svg>`,
-            'article-6': `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3"><circle cx="12" cy="12" r="10"/><path d="M14.5 12a2.5 2.5 0 0 0 0-5H11v10h3.5a2.5 2.5 0 0 0 0-5z"/></svg>`,
-            'article-7': `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3"><path d="M21 12V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h13"/><path d="M16 7v5"/><path d="M12 17h8"/><circle cx="17" cy="17" r="3"/></svg>`,
-            'article-8': `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3"><path d="m2 4 3 12h14l3-12-6 7-4-7-4 7-6-7z"/><path d="M12 15L12 17"/><path d="M12 18L12 20"/></svg>`,
-            'article-9': `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3"><circle cx="6" cy="6" r="3"/><path d="M8.12 8.12l4.67 4.67"/><path d="M16 6 8 14"/><circle cx="6" cy="18" r="3"/><path d="M14 10l-2.88 2.88"/></svg>`,
-            'article-10': `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3"><path d="M3 17V7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M8 12h8"/><path d="M8 8v8"/><path d="M16 8v8"/></svg>`,
-            'article-11': `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6"/><path d="M9 9l6 6"/></svg>`,
-            'article-12': `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3"><path d="M21 7.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h7.5"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/><path d="M18 15v6h-6"/><path d="M15 18H18"/></svg>`
-        };
+            // 3. Mobile Menu Toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Close mobile menu when a link is clicked
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
 
-        articles.forEach(article => {
-            const articleId = article.id;
-            const h2Element = article.querySelector('h2');
-            if (!h2Element) return;
+            // 4. Smooth Scrolling (for all internal links)
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    // Only prevent default if it's not a generic "#" link (like the footer ToS link)
+                    if (this.getAttribute('href') !== '#') {
+                        e.preventDefault();
+                        document.querySelector(this.getAttribute('href')).scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
 
-            const articleTitleSpan = h2Element.querySelector('span:nth-child(3)');
-            if (!articleTitleSpan) return;
+            // 5. Scroll-based Animations (Intersection Observer)
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const target = entry.target;
+                        const animationType = target.getAttribute('data-animate');
+                        const delay = parseInt(target.getAttribute('data-delay') || 0);
 
-            const articleTitle = articleTitleSpan.textContent.trim();
+                        setTimeout(() => {
+                            // Elements that use standard Tailwind transitions (card-up, stat-fade)
+                            if (animationType === 'card-up' || animationType === 'stat-fade') {
+                                target.classList.remove('opacity-0', 'translate-y-8', 'translate-y-4'); // Remove initial transform
+                                target.classList.add('opacity-100', 'translate-y-0'); // Add final state
+                            } 
+                            // Elements that use custom CSS keyframe animations (slide-up, fade-in)
+                            else if (animationType === 'slide-up' || animationType === 'fade-in') {
+                                target.classList.add('animate-' + animationType.charAt(0).toUpperCase() + animationType.slice(1));
+                                // Cleanup initial classes for good measure
+                                target.classList.remove('opacity-0', 'translate-y-4');
+                            }
+                        }, delay);
 
-            const link = document.createElement('a');
-            link.href = `#${articleId}`;
-            link.innerHTML = icons[articleId] + articleTitle;
-            link.classList.add('text-vs-text-muted', 'hover:bg-vs-accent', 'hover:text-vs-dark-bg', 'font-medium');
+                        observer.unobserve(target); // Stop observing once animated
+                    }
+                });
+            }, { 
+                threshold: 0.1, // Trigger when 10% of the element is visible
+                rootMargin: '0px 0px -100px 0px' 
+            });
 
-            tocNav.appendChild(link);
+            // Add animation classes to elements for initial state setup
+            document.querySelectorAll('[data-animate]').forEach(el => {
+                // Ensure initial hidden state for JS-controlled animations based on type
+                const animationType = el.getAttribute('data-animate');
+
+                if (animationType === 'slide-up' || animationType === 'fade-in') {
+                     // Initial state handled by the CSS class and data attributes
+                } else if (animationType === 'card-up') {
+                    // Set initial state for card transitions
+                    el.classList.add('opacity-0', 'translate-y-8');
+                } else if (animationType === 'stat-fade') {
+                    // Set initial state for stat transitions
+                    el.classList.add('opacity-0', 'translate-y-4');
+                }
+                observer.observe(el);
+            });
+            
+            // 6. Navigation Bar Shadow on Scroll
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('shadow-amber-500/10');
+                } else {
+                    navbar.classList.remove('shadow-amber-500/10');
+                }
+            });
         });
-    });
-</script>
-
+    </script>
 </body>
 </html>
-
-
-
-
